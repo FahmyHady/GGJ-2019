@@ -24,7 +24,7 @@ public class TeleportMechanism : MonoBehaviour
     Vector3 direction;
     void Start()
     {
-
+        shadowMat.color = Color.black;
     }
     void showTeleLoc()
     {
@@ -34,9 +34,10 @@ public class TeleportMechanism : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKey(KeyCode.Mouse0)&&PlayerControl.Grounded==true)
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            PlayerControl.animator.Play("teleport2");
 
             if (Physics.Raycast(ray, out hit, 1000))
             {
@@ -66,7 +67,6 @@ public class TeleportMechanism : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(Physics2D.Raycast(transform.position, direction, distance, 9).collider.gameObject);
 
                     blocked = true;
                     teleportPos = mousePos;
@@ -79,17 +79,7 @@ public class TeleportMechanism : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            if (blocked == false)
-            {
-
-                ///////
-                Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
-                transform.position = teleportPos;
-                Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
-
-
-            }
-            shadow.gameObject.SetActive(false);
+            StartCoroutine(TeleportAnimation());
         }
 
 
@@ -142,5 +132,22 @@ public class TeleportMechanism : MonoBehaviour
         yield return new WaitUntil(() => blocked == false);
         shadowMat.color = Color.black;
 
+    }
+    IEnumerator TeleportAnimation()
+    {
+        PlayerControl.animator.Play("teleport");
+        yield return new WaitForSeconds(PlayerControl.animator.GetCurrentAnimatorClipInfo(0).Length);
+
+        if (blocked == false)
+        {
+
+            ///////
+            Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
+            transform.position = teleportPos;
+            Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
+
+
+        }
+        shadow.gameObject.SetActive(false);
     }
 }
