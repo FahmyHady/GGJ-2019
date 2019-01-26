@@ -111,7 +111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   r: 5
-  shadow: {fileID: 0}
+  shadow: {fileID: 5628367457653322350}
   shadowMat: {fileID: 2100000, guid: 1e666df22d48efd4bb61d06329be2f3c, type: 2}
   teloportEffect: {fileID: 0}
 --- !u!114 &1040953906766159704
