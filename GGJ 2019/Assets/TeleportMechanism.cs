@@ -42,7 +42,7 @@ public class TeleportMechanism : MonoBehaviour
 
 
                 mousePos = hit.point;
-                mousePos.z = 0;
+                mousePos.z = transform.position.z;
                 heading = mousePos - transform.position;
                 distance = heading.magnitude;
                 direction = heading / distance;
