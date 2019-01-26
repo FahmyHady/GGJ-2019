@@ -41,6 +41,7 @@ public class PlayerControl : MonoBehaviour
 
 
             animator.SetFloat("Velocity", Mathf.Abs(mybody.velocity.x));
+            animator.SetFloat("Velocity Y", Mathf.Abs(mybody.velocity.y));
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
@@ -85,7 +86,7 @@ public class PlayerControl : MonoBehaviour
             {
                 mybody.velocity= new Vector2(1.5f*direction, mybody.velocity.y);
             }
-            Debug.Log(Mathf.Abs(mybody.velocity.x));
+
         }
     }
     public void KillPlayer()

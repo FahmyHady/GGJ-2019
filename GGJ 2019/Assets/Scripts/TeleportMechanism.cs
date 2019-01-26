@@ -152,7 +152,7 @@ public class TeleportMechanism : MonoBehaviour
         
 
             ///////
-           // AudioSource.PlayClipAtPoint(teleportationAudio, GameManager.instance.mainCamera.transform.position);
+           AudioSource.PlayClipAtPoint(teleportationAudio, GameManager.instance.mainCamera.transform.position);
             Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
             teleportPos.z = zPos;
             transform.position = teleportPos;
