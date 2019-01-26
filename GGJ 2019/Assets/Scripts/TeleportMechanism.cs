@@ -19,11 +19,12 @@ public class TeleportMechanism : MonoBehaviour
     Ray ray;
     float distance;
     bool blocked;
-    
+    [SerializeField]
+    GameObject teloportEffect;
     Vector3 direction;
     void Start()
     {
-        
+
     }
     void showTeleLoc()
     {
@@ -36,8 +37,8 @@ public class TeleportMechanism : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse0))
         {
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-           
-            if (Physics.Raycast(ray, out hit, 1000)  )
+
+            if (Physics.Raycast(ray, out hit, 1000))
             {
 
 
@@ -48,7 +49,7 @@ public class TeleportMechanism : MonoBehaviour
                 direction = heading / distance;
                 if (!Physics2D.Raycast(transform.position, direction, distance, 9))
                 {
-                  
+
 
                     if (distance < r)
                     {
@@ -58,7 +59,7 @@ public class TeleportMechanism : MonoBehaviour
                     }
                     else
                     {
-                    blocked = false;
+                        blocked = false;
                         teleportPos.x = transform.position.x + direction.x * r;
                         teleportPos.y = transform.position.y + direction.y * r;
                     }
@@ -71,18 +72,22 @@ public class TeleportMechanism : MonoBehaviour
                     teleportPos = mousePos;
                     StartCoroutine(changeColor());
                 }
-               
+
                 showTeleLoc();
             }
         }
-      
+
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
             if (blocked == false)
             {
-                
 
+                ///////
+                Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
                 transform.position = teleportPos;
+                Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
+
+
             }
             shadow.gameObject.SetActive(false);
         }
@@ -95,7 +100,7 @@ public class TeleportMechanism : MonoBehaviour
 
         float sqrtpart = b * b - 4 * a * c;
 
-        float x, x1, x2,y1,y2;
+        float x, x1, x2, y1, y2;
 
         if (sqrtpart > 0)
 
@@ -104,10 +109,10 @@ public class TeleportMechanism : MonoBehaviour
             x1 = (-b + Mathf.Sqrt(sqrtpart)) / (2 * a);
 
             x2 = (-b - Mathf.Sqrt(sqrtpart)) / (2 * a);
-            y1=m * x1 + c;
+            y1 = m * x1 + c;
             y2 = m * x2 + c;
             Debug.Log("Two Real Solutions: " + x1 + ":::" + x2);
-            if (Vector2.Distance(new Vector2(x1, y1), hit.point)< Vector2.Distance(new Vector2(x2, y2), hit.point))
+            if (Vector2.Distance(new Vector2(x1, y1), hit.point) < Vector2.Distance(new Vector2(x2, y2), hit.point))
             {
                 return x1;
             }
@@ -115,10 +120,9 @@ public class TeleportMechanism : MonoBehaviour
             {
                 return x2;
             }
-//             return Mathf.Min(Vector2.Distance(new Vector2(x1,y1),hit.point), Vector2.Distance(new Vector2(x2, y2), hit.point)); 
 
         }
-     
+
 
         else
 
@@ -135,7 +139,7 @@ public class TeleportMechanism : MonoBehaviour
     IEnumerator changeColor()
     {
         shadowMat.color = Color.red;
-        yield return new WaitUntil(()=> blocked==false );
+        yield return new WaitUntil(() => blocked == false);
         shadowMat.color = Color.black;
 
     }
