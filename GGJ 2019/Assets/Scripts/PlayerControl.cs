@@ -11,9 +11,11 @@ public class PlayerControl : MonoBehaviour
    public  int direction;
     int counter;
    static internal Animator animator;
+    static internal bool canMove;
    public Vector3 CheckPoint;
       void Start()
     {
+        canMove = true;
          animator = gameObject.GetComponentInChildren<Animator>();  
         counter = 0;
         Grounded = true;
@@ -34,51 +36,55 @@ public class PlayerControl : MonoBehaviour
 
     private void Update()
     {
-        animator.SetFloat("Velocity", Mathf.Abs(mybody.velocity.x));
-       
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (canMove)
         {
-           
-            direction = 1;
-            mybody.AddForce(Vector2.right * speed * direction);
-            mybody.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+
+            animator.SetFloat("Velocity", Mathf.Abs(mybody.velocity.x));
+
+            if (Input.GetKey(KeyCode.RightArrow))
+            {
+
+                direction = 1;
+                mybody.AddForce(Vector2.right * speed * direction);
+                mybody.transform.rotation = new Quaternion(0, 0, 0, 0);
+
+            }
+            if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
+            {
+                mybody.velocity = new Vector2(0, mybody.velocity.y);
+            }
+            if (Input.GetKey(KeyCode.LeftArrow))
+            {
+                direction = -1;
+                mybody.AddForce(Vector2.right * speed * direction);
+                mybody.transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+            //if (Input.GetKeyDown(KeyCode.Space) )
+            //{
+            //    if (Grounded == true)
+            //    {
+            //        counter=1;
+            //        mybody.velocity += Vector2.up * Jumpspeed;
+            //    }
+
+            //    if (Grounded == false && counter == 1)
+            //    {
+
+            //        mybody.velocity += Vector2.up * Jumpspeed;
+            //        counter=0;
+            //    }
+            //}
+            //if (Input.GetKeyDown(KeyCode.LeftShift))
+            //{
+
+            //    transform.position= new Vector3(transform.position.x + 2 * direction, transform.position.y, transform.position.z);
+            //}
+
+            if (Mathf.Abs(mybody.velocity.x) > 1.5f)
+            { mybody.velocity.Set(1.5f, mybody.velocity.y); }
 
         }
-        if (Input.GetKeyUp(KeyCode.RightArrow) || Input.GetKeyUp(KeyCode.LeftArrow))
-        {
-            mybody.velocity=new Vector2(0, mybody.velocity.y);
-        }
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            direction = -1;
-            mybody.AddForce(Vector2.right * speed * direction);
-            mybody.transform.rotation = new Quaternion(0, 180, 0, 0);
-        }
-        //if (Input.GetKeyDown(KeyCode.Space) )
-        //{
-        //    if (Grounded == true)
-        //    {
-        //        counter=1;
-        //        mybody.velocity += Vector2.up * Jumpspeed;
-        //    }
-        
-        //    if (Grounded == false && counter == 1)
-        //    {
-               
-        //        mybody.velocity += Vector2.up * Jumpspeed;
-        //        counter=0;
-        //    }
-        //}
-        //if (Input.GetKeyDown(KeyCode.LeftShift))
-        //{
-           
-        //    transform.position= new Vector3(transform.position.x + 2 * direction, transform.position.y, transform.position.z);
-        //}
-
-        if(Mathf.Abs(mybody.velocity.x)>3)
-        { mybody.velocity.Set(3,mybody.velocity.y); }
-
-    
     }
     public void KillPlayer()
     {

@@ -79,6 +79,7 @@ public class TeleportMechanism : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
+            PlayerControl.canMove = false;
             StartCoroutine(TeleportAnimation());
         }
 
@@ -136,8 +137,8 @@ public class TeleportMechanism : MonoBehaviour
     IEnumerator TeleportAnimation()
     {
         PlayerControl.animator.Play("teleport");
-        yield return new WaitForSeconds(PlayerControl.animator.GetCurrentAnimatorClipInfo(0).Length);
-
+        yield return new WaitForSeconds(2);
+        
         if (blocked == false)
         {
 
@@ -149,5 +150,8 @@ public class TeleportMechanism : MonoBehaviour
 
         }
         shadow.gameObject.SetActive(false);
+        yield return new WaitForSeconds(2);
+        PlayerControl.canMove = true;
+
     }
 }
