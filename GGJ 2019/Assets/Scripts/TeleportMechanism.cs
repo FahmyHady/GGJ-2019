@@ -25,6 +25,7 @@ public class TeleportMechanism : MonoBehaviour
     float zPos;
     [SerializeField]
     AudioClip teleportationAudio;
+    bool isTeleporting;
     void Start()
     {
         zPos = transform.position.z;
@@ -38,7 +39,7 @@ public class TeleportMechanism : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0)&&PlayerControl.Grounded==true)
+        if (Input.GetKey(KeyCode.Mouse0)&&PlayerControl.Grounded==true&&!isTeleporting)
         {
             PlayerControl.canMove = false;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -80,9 +81,17 @@ public class TeleportMechanism : MonoBehaviour
 
                 showTeleLoc();
             }
+            if(transform.position.x>hit.point.x)
+            {
+                PlayerControl.instance.mybody.transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+            else
+            {
+                PlayerControl.instance.mybody.transform.rotation = new Quaternion(0, 0, 0, 0);
+            }
         }
 
-        if (Input.GetKeyUp(KeyCode.Mouse0))
+        if (Input.GetKeyUp(KeyCode.Mouse0)&&!isTeleporting)
         {
             if (blocked ==false)
             {
@@ -146,6 +155,7 @@ public class TeleportMechanism : MonoBehaviour
     }
     IEnumerator TeleportAnimation()
     {
+        isTeleporting = true;
         PlayerControl.animator.Play("teleport");
         yield return new WaitForSeconds(2);
         
@@ -163,6 +173,8 @@ public class TeleportMechanism : MonoBehaviour
         
         yield return new WaitForSeconds(2);
         PlayerControl.canMove = true;
+        isTeleporting = false;
+
 
     }
 }

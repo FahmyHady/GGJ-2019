@@ -6,20 +6,22 @@ public class PlayerControl : MonoBehaviour
 {
     public int speed;
     public int Jumpspeed;
-   static internal bool Grounded;
-    Rigidbody2D mybody;
-   public  int direction;
+    static internal bool Grounded;
+    public Rigidbody2D mybody;
+    public int direction;
     int counter;
-   static internal Animator animator;
+    static internal Animator animator;
     static internal bool canMove;
-   public Vector3 CheckPoint;
-      void Start()
+    public Vector3 CheckPoint;
+    public static PlayerControl instance;
+    void Awake()
     {
+        instance = this;
         canMove = true;
-         animator = gameObject.GetComponentInChildren<Animator>();  
+        animator = gameObject.GetComponentInChildren<Animator>();
         counter = 0;
         Grounded = true;
-        direction =1 ;
+        direction = 1;
         mybody = gameObject.GetComponent<Rigidbody2D>();
     }
 
@@ -45,7 +47,7 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-                
+
                 direction = 1;
                 mybody.AddForce(Vector2.right * speed * direction);
                 mybody.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -84,7 +86,7 @@ public class PlayerControl : MonoBehaviour
 
             if (Mathf.Abs(mybody.velocity.x) > 1.5f)
             {
-                mybody.velocity= new Vector2(1.5f*direction, mybody.velocity.y);
+                mybody.velocity = new Vector2(1.5f * direction, mybody.velocity.y);
             }
 
         }
