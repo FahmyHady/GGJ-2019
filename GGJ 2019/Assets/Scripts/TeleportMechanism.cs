@@ -40,6 +40,7 @@ public class TeleportMechanism : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0)&&PlayerControl.Grounded==true)
         {
+            PlayerControl.canMove = false;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             PlayerControl.animator.Play("teleport2");
 
@@ -83,8 +84,13 @@ public class TeleportMechanism : MonoBehaviour
 
         if (Input.GetKeyUp(KeyCode.Mouse0))
         {
-            PlayerControl.canMove = false;
-            StartCoroutine(TeleportAnimation());
+            if (blocked ==false)
+            {
+                PlayerControl.canMove = false;
+                StartCoroutine(TeleportAnimation());
+            }
+        shadow.gameObject.SetActive(false);
+
         }
 
 
@@ -143,11 +149,10 @@ public class TeleportMechanism : MonoBehaviour
         PlayerControl.animator.Play("teleport");
         yield return new WaitForSeconds(2);
         
-        if (blocked == false)
-        {
+        
 
             ///////
-            AudioSource.PlayClipAtPoint(teleportationAudio, GameManager.instance.mainCamera.transform.position);
+           // AudioSource.PlayClipAtPoint(teleportationAudio, GameManager.instance.mainCamera.transform.position);
             Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
             teleportPos.z = zPos;
             transform.position = teleportPos;
@@ -155,8 +160,7 @@ public class TeleportMechanism : MonoBehaviour
 
 
 
-        }
-        shadow.gameObject.SetActive(false);
+        
         yield return new WaitForSeconds(2);
         PlayerControl.canMove = true;
 

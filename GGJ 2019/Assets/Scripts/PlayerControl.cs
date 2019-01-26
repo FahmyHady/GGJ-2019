@@ -44,7 +44,7 @@ public class PlayerControl : MonoBehaviour
 
             if (Input.GetKey(KeyCode.RightArrow))
             {
-
+                
                 direction = 1;
                 mybody.AddForce(Vector2.right * speed * direction);
                 mybody.transform.rotation = new Quaternion(0, 0, 0, 0);
@@ -82,8 +82,10 @@ public class PlayerControl : MonoBehaviour
             //}
 
             if (Mathf.Abs(mybody.velocity.x) > 1.5f)
-            { mybody.velocity.Set(1.5f, mybody.velocity.y); }
-
+            {
+                mybody.velocity= new Vector2(1.5f*direction, mybody.velocity.y);
+            }
+            Debug.Log(Mathf.Abs(mybody.velocity.x));
         }
     }
     public void KillPlayer()
