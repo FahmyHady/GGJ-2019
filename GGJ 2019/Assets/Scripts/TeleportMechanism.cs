@@ -15,8 +15,8 @@ public class TeleportMechanism : MonoBehaviour
     public GameObject shadow;
     public Material shadowMat;
     Vector3 heading;
-    RaycastHit hit,obstacleCheck;
-    Ray ray,ray2;
+    RaycastHit hit;
+    Ray ray;
     float distance;
     bool blocked;
     
@@ -46,9 +46,8 @@ public class TeleportMechanism : MonoBehaviour
                 heading = mousePos - transform.position;
                 distance = heading.magnitude;
                 direction = heading / distance;
-                if (!Physics.Raycast(transform.position, direction,r,9))
+                if (!Physics2D.Raycast(transform.position, direction, distance, 9))
                 {
-                    
                   
 
                     if (distance < r)
@@ -66,6 +65,8 @@ public class TeleportMechanism : MonoBehaviour
                 }
                 else
                 {
+                    Debug.Log(Physics2D.Raycast(transform.position, direction, distance, 9).collider.gameObject);
+
                     blocked = true;
                     teleportPos = mousePos;
                     StartCoroutine(changeColor());
