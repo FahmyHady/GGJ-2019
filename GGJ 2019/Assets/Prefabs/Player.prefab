@@ -113,6 +113,7 @@ MonoBehaviour:
   r: 5
   shadow: {fileID: 0}
   shadowMat: {fileID: 2100000, guid: 1e666df22d48efd4bb61d06329be2f3c, type: 2}
+  teloportEffect: {fileID: 0}
 --- !u!114 &1040953906766159704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,7 +164,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0029754695, y: 0.054152615}
+  m_Offset: {x: 0, y: 0.055}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
