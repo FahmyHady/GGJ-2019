@@ -41,6 +41,7 @@ public class TeleportMechanism : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0)&&PlayerControl.Grounded==true&&!isTeleporting)
         {
+            
             PlayerControl.canMove = false;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             PlayerControl.animator.Play("teleport2");
