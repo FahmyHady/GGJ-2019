@@ -22,8 +22,12 @@ public class TeleportMechanism : MonoBehaviour
     [SerializeField]
     GameObject teloportEffect;
     Vector3 direction;
+    float zPos;
+    [SerializeField]
+    AudioClip teleportationAudio;
     void Start()
     {
+        zPos = transform.position.z;
         shadowMat.color = Color.black;
     }
     void showTeleLoc()
@@ -142,9 +146,12 @@ public class TeleportMechanism : MonoBehaviour
         {
 
             ///////
+            AudioSource.PlayClipAtPoint(teleportationAudio, GameManager.instance.mainCamera.transform.position);
             Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
+            teleportPos.z = zPos;
             transform.position = teleportPos;
             Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
+
 
 
         }
