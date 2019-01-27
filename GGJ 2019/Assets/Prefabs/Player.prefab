@@ -60,7 +60,9 @@ MonoBehaviour:
   r: 2
   shadow: {fileID: 0}
   shadowMat: {fileID: 2100000, guid: 1e666df22d48efd4bb61d06329be2f3c, type: 2}
-  teloportEffect: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
+  teloportEffect1: {fileID: 1912731163003908, guid: c5febdd93ab44d640b3eb37b768360bb,
+    type: 3}
+  teloportEffect2: {fileID: 1329845292236604, guid: 9bba9cf244c53c5439505dfc96fdd11c,
     type: 3}
   teleportationAudio: {fileID: 8300000, guid: c0bf5b9779b0923429721493f0c1278e, type: 3}
 --- !u!114 &7976902670119454037

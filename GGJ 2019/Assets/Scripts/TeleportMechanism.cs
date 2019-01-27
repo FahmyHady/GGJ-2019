@@ -20,7 +20,7 @@ public class TeleportMechanism : MonoBehaviour
     float distance;
     bool blocked;
     [SerializeField]
-    GameObject teloportEffect;
+    GameObject teloportEffect1, teloportEffect2;
     Vector3 direction;
     float zPos;
     [SerializeField]
@@ -158,16 +158,17 @@ public class TeleportMechanism : MonoBehaviour
     {
         isTeleporting = true;
         PlayerControl.animator.Play("teleport");
+        Destroy(Instantiate(teloportEffect1, transform.position, Quaternion.identity), 8);
+
         yield return new WaitForSeconds(2);
         
         
 
             ///////
            AudioSource.PlayClipAtPoint(teleportationAudio, GameManager.instance.mainCamera.transform.position);
-            Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
             teleportPos.z = zPos;
             transform.position = teleportPos;
-            Destroy(Instantiate(teloportEffect, transform.position, Quaternion.identity), 2);
+            Destroy(Instantiate(teloportEffect2, transform.position, Quaternion.identity), 2);
 
 
 
