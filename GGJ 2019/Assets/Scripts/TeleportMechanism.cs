@@ -31,7 +31,7 @@ public class TeleportMechanism : MonoBehaviour
     {
         playerBody = GetComponent<Rigidbody2D>();
         zPos = transform.position.z;
-        shadowMat.color = Color.black;
+        shadowMat.color = Color.white;
     }
     void showTeleLoc()
     {

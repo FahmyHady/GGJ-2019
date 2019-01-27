@@ -14,6 +14,9 @@ public class PlayerControl : MonoBehaviour
     static internal bool canMove;
     public Vector3 CheckPoint;
     public static PlayerControl instance;
+    public GameObject lightOrb;
+    public GameObject SpotLight;
+
     void Awake()
     {
         instance = this;
@@ -62,6 +65,22 @@ public class PlayerControl : MonoBehaviour
                 direction = -1;
                 mybody.AddForce(Vector2.right * speed * direction);
                 mybody.transform.rotation = new Quaternion(0, 180, 0, 0);
+            }
+            if (Input.GetKey(KeyCode.Space))
+            {
+                animator.Play("Walk With Light");
+                lightOrb.SetActive( true);
+                SpotLight.SetActive(true);
+                SpotLight.transform.position = lightOrb.transform.position;
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                animator.Play("Idle");
+
+                lightOrb.SetActive(false);
+                SpotLight.SetActive(false);
+
+
             }
             //if (Input.GetKeyDown(KeyCode.Space) )
             //{
