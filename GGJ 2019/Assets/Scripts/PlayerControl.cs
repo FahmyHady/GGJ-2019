@@ -90,9 +90,7 @@ public class PlayerControl : MonoBehaviour
             }
 
         }
-        else
-        {
-            mybody.velocity = new Vector2(0, mybody.velocity.y);        }
+    
     }
     public void KillPlayer()
     {

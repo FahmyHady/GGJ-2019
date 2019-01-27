@@ -11,6 +11,7 @@ public class TeleportMechanism : MonoBehaviour
     float i;
     float j;
     float k;
+    Rigidbody2D playerBody;
     Vector3 teleportPos;
     public GameObject shadow;
     public Material shadowMat;
@@ -28,6 +29,7 @@ public class TeleportMechanism : MonoBehaviour
     bool isTeleporting;
     void Start()
     {
+        playerBody = GetComponent<Rigidbody2D>();
         zPos = transform.position.z;
         shadowMat.color = Color.black;
     }
@@ -41,7 +43,7 @@ public class TeleportMechanism : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.Mouse0)&&PlayerControl.Grounded==true&&!isTeleporting)
         {
-            
+            playerBody.velocity = new Vector2(0, playerBody.velocity.y);
             PlayerControl.canMove = false;
             ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             PlayerControl.animator.Play("teleport2");
@@ -99,7 +101,13 @@ public class TeleportMechanism : MonoBehaviour
                 PlayerControl.canMove = false;
                 StartCoroutine(TeleportAnimation());
             }
-        shadow.gameObject.SetActive(false);
+            else
+            {
+                PlayerControl.canMove = true;
+                PlayerControl.animator.Play("Idle");
+
+            }
+            shadow.gameObject.SetActive(false);
 
         }
 
