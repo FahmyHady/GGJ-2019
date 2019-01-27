@@ -1,0 +1,58 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4856833811963750354
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4856833811963750353}
+  - component: {fileID: 8077708093306673989}
+  m_Layer: 0
+  m_Name: SoundEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4856833811963750353
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856833811963750354}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.99859, y: 2.2176566, z: 6.0103426}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8077708093306673989
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4856833811963750354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 107f2482cd0d53a47a6c568efcd18bae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myEffects:
+  - {fileID: 8300000, guid: dae1c64a9e7564145bb96108341fee48, type: 3}
+  - {fileID: 8300000, guid: eccfc39bb3c42e643a20f3dfe2325c1c, type: 3}
+  - {fileID: 8300000, guid: 6486517ae0144a84cae36f213276ba3f, type: 3}
+  - {fileID: 8300000, guid: 92489aa299ae3004a824b91ebc1319d0, type: 3}
+  - {fileID: 8300000, guid: 2abbbe35894452a4492df6a676dbdedd, type: 3}
+  - {fileID: 8300000, guid: 99942185b144b0140aca9315871ee931, type: 3}
+  - {fileID: 8300000, guid: 6744b22ed1576c44cacf51f3c9238010, type: 3}
+  - {fileID: 8300000, guid: 0ee644cf54b23ae439d466cc4dba00da, type: 3}
+  - {fileID: 8300000, guid: 29be99df83aa01646a75aee145aae0d4, type: 3}
+  - {fileID: 8300000, guid: 64856be250baf07418f29d78c452ab4f, type: 3}
+  - {fileID: 8300000, guid: 424c0c54f6ca2364c99e89873288ba06, type: 3}
+  - {fileID: 8300000, guid: 5f274db12241f774b956aff897c61042, type: 3}
