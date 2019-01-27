@@ -9,11 +9,12 @@ public class DoorHandle : MonoBehaviour
     bool entered;
 
     void Update()
-    {
+    {/////////////////TODO
         if (entered && Input.GetKey(KeyCode.Z))
         {
-            if (effector.transform.eulerAngles.z < 100)
+            if (Mathf.Abs( effector.transform.eulerAngles.z )< 100)
             {
+                Debug.Log(Mathf.Abs(effector.transform.eulerAngles.z));
                 effector.transform.Rotate(0, 0, 1);
                 effector.GetComponentInChildren<Collider2D>().isTrigger = true;
             }
