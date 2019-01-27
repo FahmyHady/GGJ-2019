@@ -7,17 +7,17 @@ public class DoorHandle : MonoBehaviour
     [SerializeField]
     GameObject effector;
     bool entered;
-
     void Update()
     {/////////////////TODO
-        if (entered && Input.GetKey(KeyCode.Z))
+        if (entered && Input.GetKeyDown(KeyCode.Z))
         {
-            if (Mathf.Abs( effector.transform.eulerAngles.z )< 100)
+            effector.GetComponent<Animator>().Play("Opening");
+            /*if (effector.transform.rotation.z < Quaternion.Euler(0, 0, 100).z)
             {
-                Debug.Log(Mathf.Abs(effector.transform.eulerAngles.z));
+                Debug.Log(effector.transform.rotation.z +" "+ Quaternion.Euler(0, 0, 100).z);
                 effector.transform.Rotate(0, 0, 1);
                 effector.GetComponentInChildren<Collider2D>().isTrigger = true;
-            }
+            }*/
         }
     }
     void OnTriggerEnter2D(Collider2D col)
