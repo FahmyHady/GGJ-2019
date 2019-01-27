@@ -6,20 +6,22 @@ public class FinalDoorHandle : MonoBehaviour
 {
     [SerializeField]
     GameObject effector;
+    public GameObject finalspot;
     bool entered;
-
     void Update()
-    {
-        if (entered )
+    {/////////////////TODO
+        if (entered && Input.GetKeyDown(KeyCode.Z))
         {
-                effector.transform.Rotate(0, 0, 1);
-
-            if (effector.transform.eulerAngles.z < 100)
-            {
-                effector.gameObject.transform.rotation = new Quaternion(0, 0, 100, effector.transform.rotation.w);
-                effector.GetComponentInChildren<Collider2D>().isTrigger = true;
-            }
+            effector.GetComponent<Animator>().Play("Opening");
+            StartCoroutine(end());
         }
+    }
+
+    IEnumerator end()
+    {
+        yield return new WaitForSeconds(1.5f);
+        finalspot.SetActive(true);
+        
     }
     void OnTriggerEnter2D(Collider2D col)
     {
