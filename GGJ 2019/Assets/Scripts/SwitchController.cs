@@ -16,6 +16,7 @@ public class SwitchController : MonoBehaviour
         {
 
             effector.SetActive(!effector.activeSelf);
+            GetComponentInChildren<Light>().gameObject.SetActive(!GetComponentInChildren<Light>().gameObject.activeSelf);
         }
     }
     void OnDrawGizmos()
