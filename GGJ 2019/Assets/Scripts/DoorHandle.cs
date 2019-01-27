@@ -9,6 +9,7 @@ public class DoorHandle : MonoBehaviour
     bool entered;
     void Update()
     {/////////////////TODO
+        print(name);
         if (entered && Input.GetKeyDown(KeyCode.Z))
         {
             effector.GetComponent<Animator>().Play("Opening");
