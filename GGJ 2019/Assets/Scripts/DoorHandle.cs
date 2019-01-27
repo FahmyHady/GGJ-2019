@@ -12,7 +12,7 @@ public class DoorHandle : MonoBehaviour
     {
         if (entered && Input.GetKey(KeyCode.Z))
         {
-            if (effector.transform.rotation.z<100)
+            if (effector.transform.eulerAngles.z < 100)
             {
                 effector.transform.Rotate(0, 0, 1);
                 effector.GetComponentInChildren<Collider2D>().isTrigger = true;
