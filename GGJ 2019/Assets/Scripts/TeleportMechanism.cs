@@ -159,7 +159,7 @@ public class TeleportMechanism : MonoBehaviour
     {
         shadowMat.color = Color.red;
         yield return new WaitUntil(() => blocked == false);
-        shadowMat.color = Color.black;
+        shadowMat.color = Color.white;
 
     }
     IEnumerator TeleportAnimation()

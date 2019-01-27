@@ -6,28 +6,21 @@ public class SwitchController : MonoBehaviour
 {
     // Start is called before the first frame update
     [SerializeField]
-    GameObject shadow;
+    GameObject effector;
     bool entered;
-    void Start()
-    {
-        
-    }
-
+   
     // Update is called once per frame
     void Update()
     {
         if(entered&&Input.GetKeyDown(KeyCode.Z))
         {
-            ///////////////////////todo
-            //Destroy(shadow);
-            //Destroy(gameObject);
-            //print(shadow.activeSelf);
-            shadow.SetActive(!shadow.activeSelf);
+
+            effector.SetActive(!effector.activeSelf);
         }
     }
     void OnDrawGizmos()
     {
-        if(shadow==null)
+        if(effector == null)
         {
             Debug.LogError("No target on "+gameObject.name);
         }
@@ -36,19 +29,11 @@ public class SwitchController : MonoBehaviour
     }
     void OnTriggerEnter2D(Collider2D col)
     {
-        //print("ok");
         entered = true;
     }
     void OnTriggerExit2D(Collider2D col)
     {
         entered = false;
     }
-    /*void OnCollisionEnter2D(Collision2D col)
-    {
-        entered = true;
-    }
-    void OnCollisionExit2D(Collision2D col)
-    {
-        entered = false;
-    }*/
+
 }
